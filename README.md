@@ -289,5 +289,5 @@ This build is documented publicly milestone by milestone.
 - [MCP Protocol Specification](https://modelcontextprotocol.io)
 - [SAP Note 2948977 — OData V4 Service Activation](https://launchpad.support.sap.com/#/notes/2948977)
 - [SAP EWM Standard APIs — API Hub](https://api.sap.com)
-- [vibing-steampunk ABAP MCP](https://github.com/vibing-steampunk/vsp)
-- [Marian Zeis — ABAP MCP Docs](https://mcp-abap.marianzeis.de)
+- [Vibing Steampunk — ABAP MCP Server by oisee](https://github.com/oisee/vibing-steampunk)
+- [Marian Zeis — ABAP MCP Server](https://github.com/marianfoo/abap-mcp-server) · hosted at [mcp-abap.marianzeis.de](https://mcp-abap.marianzeis.de)
