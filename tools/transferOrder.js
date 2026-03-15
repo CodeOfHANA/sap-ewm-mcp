@@ -1,6 +1,6 @@
 import { s4hPost } from '../lib/s4hClient.js';
 
-const BASE = `/sap/opu/odata4/sap/api_warehouse_order_task_2/srvd_a2x/sap/warehouseordertask/0001/WarehouseTask`;
+const BASE = `/sap/opu/odata4/sap/api_warehouse_order_task_2/srvd_a2x/sap/warehouseorder/0001/WarehouseTask`;
 
 export async function createTransferOrder({ warehouse, sourceBin, destinationBin, product, quantity, unit }) {
   const body = {
