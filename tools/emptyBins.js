@@ -1,8 +1,6 @@
 import { s4hGet } from '../lib/s4hClient.js';
 
-// ⚠️ Verify service path in browser before first use:
-// https://<host>/sap/opu/odata4/sap/api_whse_storage_bin_2/srvd_a2x/sap/whsestoragebin2/0001/
-const BASE = `/sap/opu/odata4/sap/api_whse_storage_bin_2/srvd_a2x/sap/whsestoragebin2/0001/StorageBin`;
+const BASE = `/sap/opu/odata4/sap/api_whse_storage_bin_2/srvd_a2x/sap/warehousestoragebin/0001/WarehouseStorageBin`;
 
 export async function findEmptyBins({ warehouse, storageType, top = 50 }) {
   const filters = [
@@ -21,7 +19,8 @@ export async function findEmptyBins({ warehouse, storageType, top = 50 }) {
     emptyBins: data.value.map(b => ({
       bin: b.EWMStorageBin,
       storageType: b.EWMStorageType,
-      blocked: b.EWMStorageBinIsBlocked,
+      blockedPutaway: b.EWMStorBinIsBlockedForPutaway,
+      blockedRemoval: b.EWMStorBinIsBlockedForRemoval,
     }))
   };
 }

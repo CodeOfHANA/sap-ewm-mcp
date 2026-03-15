@@ -1,8 +1,6 @@
 import { s4hGet } from '../lib/s4hClient.js';
 
-// ⚠️ Verify service path in browser before first use:
-// https://<host>/sap/opu/odata4/sap/api_whse_storage_bin_2/srvd_a2x/sap/whsestoragebin2/0001/
-const BIN_BASE = `/sap/opu/odata4/sap/api_whse_storage_bin_2/srvd_a2x/sap/whsestoragebin2/0001/StorageBin`;
+const BIN_BASE = `/sap/opu/odata4/sap/api_whse_storage_bin_2/srvd_a2x/sap/warehousestoragebin/0001/WarehouseStorageBin`;
 const STOCK_BASE = `/sap/opu/odata4/sap/api_whse_physstockprod/srvd_a2x/sap/whsephysicalstockproducts/0001/WarehousePhysicalStockProducts`;
 
 export async function getBinUtilization({ warehouse, storageType, top = 100 }) {
@@ -17,7 +15,7 @@ export async function getBinUtilization({ warehouse, storageType, top = 100 }) {
   const totalBins = binData.value.length;
   const emptyBins = binData.value.filter(b => b.EWMStorageBinIsEmpty).length;
   const occupiedBins = totalBins - emptyBins;
-  const blockedBins = binData.value.filter(b => b.EWMStorageBinIsBlocked).length;
+  const blockedBins = binData.value.filter(b => b.EWMStorBinIsBlockedForPutaway || b.EWMStorBinIsBlockedForRemoval).length;
   const utilizationPct = totalBins > 0 ? Math.round((occupiedBins / totalBins) * 100) : 0;
 
   // Group stock by storage type
