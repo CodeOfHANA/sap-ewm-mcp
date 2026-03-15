@@ -1,0 +1,19 @@
+{
+  "name": "sap-ewm-mcp",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "dotenv": "^16.6.1",
+    "node-fetch": "^3.3.2",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "pdf-lib": "^1.17.1",
+    "puppeteer": "^24.39.1"
+  }
+}
