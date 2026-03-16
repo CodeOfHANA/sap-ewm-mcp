@@ -21,6 +21,84 @@ The goal: replace transactions like `LX03`, `LS24`, and `LT10` with a single nat
 
 ---
 
+## Installation
+
+### Option A — npx (recommended)
+
+No cloning required. Configure your MCP client and run directly from npm:
+
+**Claude Desktop** — add to `claude_desktop_config.json`:
+
+> Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+> macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
+
+```json
+{
+  "mcpServers": {
+    "sap-ewm-mcp": {
+      "command": "npx",
+      "args": ["sap-ewm-mcp"],
+      "env": {
+        "SAP_URL": "https://your-host:44300",
+        "SAP_USER": "your-user",
+        "SAP_PASSWORD": "your-password",
+        "SAP_CLIENT": "100"
+      }
+    }
+  }
+}
+```
+
+**Claude Code** — add to `.mcp.json` in your project root:
+
+```json
+{
+  "mcpServers": {
+    "sap-ewm-mcp": {
+      "command": "npx",
+      "args": ["sap-ewm-mcp"],
+      "env": {
+        "SAP_URL": "https://your-host:44300",
+        "SAP_USER": "your-user",
+        "SAP_PASSWORD": "your-password",
+        "SAP_CLIENT": "100"
+      }
+    }
+  }
+}
+```
+
+Restart your client — the 7 EWM tools will be available immediately.
+
+---
+
+### Option B — Clone and run locally (for developers)
+
+```bash
+git clone https://github.com/CodeOfHANA/sap-ewm-mcp.git
+cd sap-ewm-mcp
+npm install
+cp .env.example .env   # fill in your SAP credentials
+node index.js          # server starts on stdio
+```
+
+Then point your MCP client at the local `index.js`:
+
+```json
+{
+  "mcpServers": {
+    "sap-ewm-mcp": {
+      "command": "node",
+      "args": ["/path/to/sap-ewm-mcp/index.js"]
+    }
+  }
+}
+```
+
+> Use Option B if you want to modify tools, add new EWM capabilities, or contribute.
+
+---
+
 ## Why MCP?
 
 MCP (Model Context Protocol) is an open standard by Anthropic. Any AI agent — Claude, Joule, Cursor — can connect to the same server via one protocol. Build once, serve any agent.
@@ -286,6 +364,7 @@ Write tools (5, 7) use CSRF token fetch + session cookie forwarding. Tool 5 addi
 - [x] Write tools (5, 7) — CSRF token fetch + session cookie forwarding + ETag/If-Match implemented and verified
 - [x] Fixed bin assignment (Tools 6+7) — full CRUD, first write to master data confirmed live
 - [x] MCP server works standalone — no dependency on vibing-steampunk or any other MCP server
+- [x] Published to npm — works via `npx sap-ewm-mcp` in Claude Desktop and Claude Code
 
 ---
 
